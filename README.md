@@ -1,1 +1,1 @@
-# RateMyKos-Project
+# MiniNewsProject
