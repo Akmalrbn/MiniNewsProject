@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Webpage</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        /* Custom CSS for the navigation bars */
+        .navbar {
+            background-color: #150635; /* background color */
+            color: white; /* text color */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }     
+        
+        .navbar-nav .nav-item a {
+            transition: color 0.3s ease;
+        }
+        
+        .navbar-nav .nav-item a:hover {
+            color: #ff6347; 
+        }
+
+        .navbar-brand img {
+            max-width: 150px;
+        }
+
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+        }
+
+        .navbar .navbar-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar .navbar-links li {
+            margin-right: 15px;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 25px; 
+        }
+
+        .navbar-links li a:hover {
+            border-bottom: 2px solid black;
+            color: red; 
+            font-size: 1.2em;
+        }
+
+        .navbar .navbar-links li a {
+            text-decoration: none;
+            color: white; /* link text color */
+        }
+
+        /* CSS for Title */
+        @keyframes slideIn {
+            0% {
+              transform: translateX(-100%);
+            }
+            100% {
+              transform: translateX(0);
+            }
+        }
+
+        .page-header {
+            animation: slideIn 2s ease-out;
+        }
+        
+        .page-header h1 {
+            font-family: 'Roboto', sans-serif;
+        }
+         
+        /* CSS Card for the news */
+        .card {
+            transition: transform 0.3s ease-in-out;
+            border-radius: 10px;
+            overflow: hidden;
+        } 
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+        }
+
+        .card img.card-img {
+            width: 100%;
+            height: auto;
+        }
+         
+        .card h2.card-title {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+         
+        .card p.card-subtitle {
+            font-size: 16px;
+            color: #888;
+            margin-top: 10px;
+        }
+         
+        .writer-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+         
+        .writer-info img.writer-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+         
+        .writer-info span.writer-name {
+            font-size: 14px;
+            color: #666;
+        }
+        
+         /* CSS for Header */ 
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        .page-header h1 {
+            margin-left: 100px; 
+            margin-top: 30px;
+            font-family: 'Roboto', sans-serif;
+        }
+         
+        .writer-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+         
+        .writer-date {
+            color: #888; 
+        }
+
+        .card {
+            width: 4F00px; 
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+              font-size: 24px;
+            }
+        }
+
+        footer {
+            background-color: #150635;
+            color: #ffffff; 
+        }
+
+        .text-center{
+            margin-bottom: 40px;
+        }
+
+        #prevBtn, #nextBtn {
+            background-color: #0a0a23; 
+            color: #fff; 
+            border: none; /* Remove the default border */
+            border-radius: 150px; /* Round up the edges of the button */
+        }
+
+        #prevBtn:hover, #nextBtn:hover {
+            background-color: #002ead; 
+            transition: 0.7s; /* Smooth transition */
+        }
+
+        footer .row > div {
+            padding: 20px;
+        }
+
+        footer {
+            background: linear-gradient(to right, #150635, #0a0a23);
+            color: #ffffff;
+        }
+
+        footer h5 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+         
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+         
+        footer ul li {
+            margin-bottom: 10px;
+        }
+         
+        footer ul li a {
+            text-decoration: none;
+            color: inherit;
+        }
+         
+        footer .company-logo img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .company-logo img {
+            max-width: 100%;
+            height: 150px;
+            animation: fadeIn 2s ease-in-out;
+        }
+           
+        .company-logo p {
+            margin-top: 10px;
+            animation: slideUp 2s ease-in-out;
+        }
+
+        .col-md-3 h5, .col-md-3 p, .col-md-3 form {
+            transition: all 0.3s ease;
+        }
+          
+        .col-md-3:hover h5 {
+            transform: scale(1.1);
+        }
+          
+        .col-md-3:hover p {
+            opacity: 0.8;
+        }
+          
+        .col-md-3 form {
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+          
+        .col-md-3:hover form {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <img src="DETIKCOM.png" alt="Logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="LandingPage.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Template.html">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Header Section -->
+<header class="page-header">
+    <h1>Blog</h1>
+</header>
+
+<!-- News Cards -->
+<div class="container mt-4">
+    <div class="row no gutters" id="firstSet">
+        <!-- Card 1 -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 1" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 1</h2>
+                    <p class="card-subtitle">News Subtitle 1</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 1" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 1 </span>
+                            <span class="writer-date">| Date 1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 2" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 2</h2>
+                    <p class="card-subtitle">News Subtitle 2</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 2" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 2</span>
+                            <span class="writer-date">| Date 2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 3" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 3</h2>
+                    <p class="card-subtitle">News Subtitle 3</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 2" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 3</span>
+                            <span class="writer-date">| Date 3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4-->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 4" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 4</h2>
+                    <p class="card-subtitle">News Subtitle 4</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 4" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 4</span>
+                            <span class="writer-date">| Date 4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5-->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 5" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 5</h2>
+                    <p class="card-subtitle">News Subtitle 5</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 5" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 5</span>
+                            <span class="writer-date">| Date 5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6-->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 6" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 6</h2>
+                    <p class="card-subtitle">News Subtitle 6</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 6" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 6</span>
+                            <span class="writer-date">| Date 6</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 7-->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 7" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 7</h2>
+                    <p class="card-subtitle">News Subtitle 7</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 7" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 7</span>
+                            <span class="writer-date">| Date 7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 8-->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 8" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 8</h2>
+                    <p class="card-subtitle">News Subtitle 8</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 8" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 8</span>
+                            <span class="writer-date">| Date 8</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 9-->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="zoomMeeting.png" alt="News Image 9" class="card-img">
+                <div class="card-body">
+                    <h2 class="card-title">News Title 9</h2>
+                    <p class="card-subtitle">News Subtitle 9</p>
+                    <div class="writer-info">
+                        <img src="profile1.png" alt="Writer Profile 9" class="writer-img">
+                        <div class="writer-details">
+                            <span class="writer-name">Writer Name 9</span>
+                            <span class="writer-date">| Date 9</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Other News Cards -->
+<div class="container mt-4">
+    <div class="row no gutters" id="secondSet" style="display: none;">
+            <!-- Card 10 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 1" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 10</h2>
+                        <p class="card-subtitle">News Subtitle 10</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 1" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 10 </span>
+                                <span class="writer-date">| Date 10</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 11 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 2" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 11</h2>
+                        <p class="card-subtitle">News Subtitle 11</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 2" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 11</span>
+                                <span class="writer-date">| Date 11</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 12 -->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 3" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 12</h2>
+                        <p class="card-subtitle">News Subtitle 12</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 2" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 12</span>
+                                <span class="writer-date">| Date 12</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 13-->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 4" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 13</h2>
+                        <p class="card-subtitle">News Subtitle 13</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 13" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 13</span>
+                                <span class="writer-date">| Date 13</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 14-->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 14" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 14</h2>
+                        <p class="card-subtitle">News Subtitle 14</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 14" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 14</span>
+                                <span class="writer-date">| Date 14</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 6-->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 6" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 15</h2>
+                        <p class="card-subtitle">News Subtitle 15</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 15" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 15</span>
+                                <span class="writer-date">| Date 15</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 7-->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 16" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 16</h2>
+                        <p class="card-subtitle">News Subtitle 16</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 16" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 16</span>
+                                <span class="writer-date">| Date 16</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 8-->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 17" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 17</h2>
+                        <p class="card-subtitle">News Subtitle 17</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 17" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 17</span>
+                                <span class="writer-date">| Date 17</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Card 9-->
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="secondIMG.png" alt="News Image 18" class="card-img">
+                    <div class="card-body">
+                        <h2 class="card-title">News Title 18</h2>
+                        <p class="card-subtitle">News Subtitle 18</p>
+                        <div class="writer-info">
+                            <img src="profile1.png" alt="Writer Profile 9" class="writer-img">
+                            <div class="writer-details">
+                                <span class="writer-name">Writer Name 19</span>
+                                <span class="writer-date">| Date 18</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+ </div>
+ 
+
+<!-- Navigation Buttons -->
+<div class="text-center mt-3">
+    <button id="prevBtn" onclick="showPrev()" style="display: none;">Previous</button>
+    <button id="nextBtn" onclick="showNext()">Next</button>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="company-logo">
+                   <img src="DETIKCOM.png" alt="Company Logo">
+                   <p>Company Description</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">Product</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Features</h5>
+                <ul>
+                    <li><a href="#">Screen Sharing</a></li>
+                    <li><a href="#">IoS & Android Apps</a></li>
+                    <li><a href="#">File Sharing</a></li>
+                    <li><a href="#">User Management</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Contact Us</h5>
+                <ul>
+                    <li><a href="#">info@teamapp.com</a></li>
+                    <li><a href="#">1-800-200-300</a></li>
+                    <li><a href="#">1010 Sunset Blv. Palo Alto, California</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Stay Up-to-Date</h5>
+                <p>Subscribe to our newsletter</p>
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter Email">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Enter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.5/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    let firstSet = document.getElementById('firstSet');
+    let secondSet = document.getElementById('secondSet');
+    let prevBtn = document.getElementById('prevBtn');
+    let nextBtn = document.getElementById('nextBtn');
+
+    function showNext() {
+    firstSet.style.display = 'none';
+    secondSet.style.display = 'block';
+    prevBtn.style.display = 'block';
+    nextBtn.style.display = 'none';
+    }
+
+    function showPrev() {
+    firstSet.style.display = 'block';
+    secondSet.style.display = 'none';
+    prevBtn.style.display = 'none';
+    nextBtn.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

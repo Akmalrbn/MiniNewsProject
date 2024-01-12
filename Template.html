@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>News Details</title>
+    <style>
+        /* Style for the news details page */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f2f1f600; 
+            color: rgb(15, 15, 15); 
+            padding: 10px 20px;
+        }
+
+        .navbar-logo img {
+            max-width: 100px; 
+            margin-left: 20px;
+        }
+
+        .navbar-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .navbar-links li {
+            margin-right: 15px;
+        }
+
+        .navbar-links li a {
+            text-decoration: none;
+            color: black;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.5s ease;
+        }
+         
+        .navbar-links li a:hover {
+            border-bottom: 2px solid black;
+            color: red; 
+            font-size: 1.2em;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 25px; 
+        }
+
+        .news-image {
+            width: 100%; 
+            max-height: 500px; /* maximum height for the image */
+            object-fit: cover; /* Maintain aspect ratio and cover container */
+            margin-bottom: 20px; 
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        .news-title {
+            font-size: 40px;
+            font-weight: bold;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin-bottom: 10px;
+            margin-top: 30px;
+            margin-left: 60px;
+            margin-right: 60px;
+            transition: color 0.5s ease;
+            margin: 2rem 3rem;
+        }
+
+        .news-title:hover {
+            color: #473dd4; /* Change color on hover */
+            transform: scale(1.1);
+        }
+
+        .writer-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            margin-left: 10px;
+            margin-right: 60px;
+            margin-top: 20px;
+            transition: border-bottom 0.5s ease;
+        }
+
+        .writer-profile {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            overflow: hidden;
+            margin-left: 60px;
+            margin-right: 10px;
+            margin-top: -20px;
+            transition: border-bottom 0.5s ease;
+        }
+
+        .writer-profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;  
+        }
+
+        .writer-name {
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
+        .writer-date {
+            color: #777;
+            font-family: sans-serif;
+        }
+
+        
+           
+        .writer-name:hover, .writer-date:hover {
+            color: #b2dfdb; /* Change color on hover */
+        }
+          
+        .writer-name:hover, .writer-date:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+
+        }
+        
+        .news-description {
+            margin-bottom: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .news-description p {
+            transition: transform 0.5s ease;
+            box-shadow: 0px 0px 0px rgba(0,0,0,0);
+        }
+           
+        .news-description p:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+        }           
+
+        .written-by {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .comment-section {
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .comment-box {
+            width: 100%;
+            height: 100px;
+            resize: vertical;
+            transition: transform 0.5s ease;
+        }
+
+        .comment-submit {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: box-shadow 0.5s ease;
+            box-shadow: 0px 0px 0px rgba(0,0,0,0);
+        }
+
+        .comment-submit:hover {
+            animation: pulse 1s infinite;
+        }
+           
+        @keyframes pulse {
+            0% { box-shadow: 0px 0px 0px rgba(0,0,0,0); }
+            50% { box-shadow: 0px 0px 10px rgba(0,0,0,0.5); }
+            100% { box-shadow: 0px 0px 0px rgba(0,0,0,0); }
+        }
+
+        .new-comment {
+            animation: slide-up 1s forwards;
+        }
+
+        .comment-box:focus {
+            transform: scale(1.1);
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+        }
+           
+        @keyframes slide-up {
+            0% { transform: translateY(100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }           
+
+        footer {
+            background-color: #150635;
+            color: #ffffff; 
+            margin-top: 50px;
+        }
+
+        footer .row > div {
+            padding: 20px;
+        }
+
+        footer h5 {
+            margin-bottom: 15px;
+        }
+         
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+         
+        footer ul li {
+            margin-bottom: 10px;
+        }
+         
+        footer ul li a {
+            text-decoration: none;
+            color: inherit;
+        }
+         
+        footer .company-logo img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .company-logo img {
+            max-width: 100%;
+            height: auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+           
+        .company-logo p {
+            margin-top: 10px;
+            animation: slideUp 2s ease-in-out;
+        }
+
+        .col-md-3 h5, .col-md-3 p, .col-md-3 form {
+            transition: all 0.3s ease;
+        }
+          
+        .col-md-3:hover h5 {
+            transform: scale(1.1);
+        }
+          
+        .col-md-3:hover p {
+            opacity: 0.8;
+        }
+          
+        .col-md-3 form {
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+          
+        .col-md-3:hover form {
+            transform: translateY(0);
+            opacity: 1;
+        }
+           
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+           
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <!-- Replace 'logo-image.png' with the path to your team's logo -->
+            <img src="DETIKCOM.png" alt="Team Logo">
+        </div>
+        <ul class="navbar-links">
+            <li><a href="LandingPage.html">Home</a></li>
+            <li><a href="Blog.html">Blog</a></li>
+            <li><a href="#">Support</a></li>
+            <li><a href="#">Login</a></li>
+            <li><a href="#" class="btn btn-primary">Get Access</a></li>
+        </ul>
+    </nav>
+
+    <!-- Templates -->
+    <div class="container">
+        <!-- News Title -->
+        <h1 class="news-title">Data Data exported by Team Cloud organization administrators contained private files</h1>
+
+        <!-- Writer Information -->
+        <div class="writer-info">
+            <div class="writer-profile">
+                <img src="profpic_template.png" alt="Writer Profile">
+            </div>
+            <div class="writer-details">
+                <p class="writer-name">Mark Brooklyn</p>
+                <p class="writer-date">02 January 2024</p>
+            </div>
+        </div>
+
+        <!-- News Image -->
+        <img src="IMG_template.png" alt="News Image" class="news-image">
+
+        <!-- News Description -->
+        <div class="news-description">
+            <p> Administrators of Team Cloud organizations can export public data from their
+                organization via the organization settings menu. The exports include all the data that
+                appears in public streams, and can be used to migrate from Team Cloud to self-hosting
+                Team. Note that exporting private data is a separate process that requires contacting
+                Team Support.</p>
+                
+            <p> Due to a bug in the public export code, exports of public data contained all uploaded
+                files, even those from private messages and private streams. This may have allowed
+                organization owners or administrators to extract uploaded files that they were not
+                otherwise allowed to access. The content of non-public messages was never included in
+                public exports.</p> 
+                
+            <p> This bug has existed since the public export feature was implemented in August 2019.
+                We have deleted all existing Team Cloud exports from our servers, and will be making
+                changes to auto-expire all exports after 7 days in the future. This bug was fixed for
+                self-hosted users in the Team Server 5.4 release.</p>
+                
+            <p> We have notified by email all administrators and users in non-deactivated Team Cloud
+                organizations who may have been impacted by this bug. As many organizations have
+                never exported their data, most Team Cloud users were not affected.</p>
+                
+            <p> We would like to thank Antoine Benoist for bringing this issue to our attention.</p>
+        </div>
+
+        <!-- Written By Section -->
+        <div class="written-by">
+            <p>Written by <span class="writer-name">Mark Brooklyn</span> | <span class="writer-date">02 January 2024</span></p>
+        </div>
+
+        <!-- Comment Section -->
+        <div class="comment-section">
+            <textarea class="comment-box" placeholder="Write your comment here..."></textarea>
+            <button class="comment-submit">Submit Comment</button>
+            <!-- Add comment display area if needed -->
+        </div>
+    </div>
+</body>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="company-logo">
+                   <img src="DETIKCOM.png" alt="Company Logo">
+                   <p>Company Description</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">Product</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Features</h5>
+                <ul>
+                    <li><a href="#">Screen Sharing</a></li>
+                    <li><a href="#">IoS & Android Apps</a></li>
+                    <li><a href="#">File Sharing</a></li>
+                    <li><a href="#">User Management</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Contact Us</h5>
+                <ul>
+                    <li><a href="#">info@teamapp.com</a></li>
+                    <li><a href="#">1-800-200-300</a></li>
+                    <li><a href="#">1010 Sunset Blv. Palo Alto, California</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Stay Up-to-Date</h5>
+                <p>Subscribe to our newsletter</p>
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Enter Email">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Enter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap CSS -->  
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</html>
